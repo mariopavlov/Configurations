@@ -75,7 +75,7 @@ List all disks on the system:
 Format Boot drive:
 `mkfs.ext2 /dev/nvme0n1p2`
 
-### Create Encrypted Drive:
+### Create Encrypted Drive
 
 ```bash
 cryptsetup -c aes-xts-plain64 -y --use-random luksFormat /dev/nvme0n1p10
@@ -222,7 +222,7 @@ Sometimes the above kernel parameters will not work properly on some Dell laptop
 `username`
 `password`
 
-## Escalate to root 
+## Escalate to root
 
 `su`
 
