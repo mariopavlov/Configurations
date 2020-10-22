@@ -1,0 +1,123 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'romkatv/powerlevel10k'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'rizzatti/dash.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'Valloric/YouCompleteMe'
+
+call plug#end()
+
+set encoding=UTF-8
+
+" Enable Airline fonts
+
+let g:airline_powerline_fonts = 1
+
+"
+" NERDTree Configurations
+"
+
+
+" NERD Tree GIT Plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'❍',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✫',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✘',
+                \ 'Dirty'     :'☢',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
+let g:NERDTreeDirArrowExpandable = '● ❱'
+let g:NERDTreeDirArrowCollapsible = '● ➘'
+
+" Not Sure what is this
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"
+" END OF NERDTree Configurations
+"
+
+" FZF Configurations
+set rtp+=/usr/local/opt/fzf
+
+"
+" Specific Configurations
+"
+if has("gui_running")
+    " MacVim Options are here
+
+    " Set GUI Font
+    set guifont=MesloLGS\ NF:h14
+
+    " Theme
+    "set background=dark
+    colorscheme solarized8_flat
+    syntax on
+
+    " Window Size
+    set lines=170
+    set columns=170
+else
+    " Console VIM configurations
+
+    " Console Theme
+    colorscheme onedark
+    syntax on
+    highlight Normal ctermbg=None
+    highlight LineNr ctermfg=DarkGrey
+
+endif
+
+" Improve Windows Movement
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+" VIM Configurations
+" Set Line Numbers
+set number
+
+" Show the line and column number of the cursor position
+set ruler
+
+" Display completion matches on your status line
+set wildmenu
+
+" Highlight search matches
+set hlsearch
+
+" Enable smart indent
+set smartindent
+
+" Use spaces instead of tabs
+set expandtab
+
+" Set tab to 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Enable smart tabs
+set smarttab
+
+" Seting cursor Shape and color
+" Insert Mode (SI)
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+" Replace Mode (SR)
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+" Normal Mode (ELSE)
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
