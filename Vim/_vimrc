@@ -10,7 +10,14 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
+
+"" Vim-Prettier
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+            \ 'do': 'npm install',
+            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -87,6 +94,13 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" CTags Configuration
+" Usually I keep my tags file under the .git folder
+set tags^=.git/tags;~
+
+" Make ASM filetype use the NASM file syntax
+let g:asmsyntax = 'nasm'
 
 " VIM Configurations
 " Set Line Numbers
