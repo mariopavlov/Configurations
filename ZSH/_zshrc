@@ -79,6 +79,9 @@ plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+# CTags Fix
+alias ctags='/usr/local/bin/ctags'
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -95,6 +98,17 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+# Wrapped Git to perform on status re-creation of tags file
+git()
+{
+    if [[ $# -ge 1 && "$1" == "status" ]]
+    then
+        exec .git/hooks/ctags >/dev/null 2>&1 &
+    fi
+
+    command git "$@"
+}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
