@@ -130,20 +130,33 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 " jsx
 let g:jsx_ext_required = 0
 
-" ALE: {{{
+""" ALE """ 
 let g:ale_sign_error = '•'
 let g:ale_sign_warning = '•'
 let g:ale_sign_info = '·'
 let g:ale_sign_style_error = '·'
 let g:ale_sign_style_warning = '·'
 
-let g:ale_linters = { 'cs': ['OmniSharp'] }
-" }}}
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-" ale prettier-eslint
-"let g:ale_fixers = {
-"\   'javascript': ['prettier_eslint'],
-"\}
-"let g:ale_fix_on_save = 1
-"let g:ale_javascript_prettier_eslint_executable = 'prettier-eslint'
-"let g:ale_javascript_prettier_eslint_use_global = 1
+" let g:ale_linters = { 'cs': ['OmniSharp'] }
+
+let g:ale_linters = {
+    \   'cs': ['OmniSharp'],
+    \   'python': ['flake8', 'pylint'],
+    \   'ruby': ['standardrb', 'rubocop'],
+    \   'javascript': ['eslint'],
+    \}
+
+" Airline
+let g:airline_left_sep  = ''
+let g:airline_right_sep = ''
+let g:airline#extensions#ale#enabled = 1
+let airline#extensions#ale#error_symbol = 'E:'
+let airline#extensions#ale#warning_symbol = 'W:'
+
+""" ALE """
