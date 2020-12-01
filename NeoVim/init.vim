@@ -3,16 +3,43 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
+" Jedi, tool for Python - Static analysis, autocompletion, refactoring
 Plug 'zchee/deoplete-jedi'
+
+""" GIT """
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/vim-gitbranch'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+""" GIT """
+
+""" COLORSCHEMES """
 Plug 'trevordmiller/nova-vim'
+Plug 'overcache/NeoSolarized'
+""" COLORSCHEMES """
+
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'w0rp/ale'
 
-Plug 'overcache/NeoSolarized'
+""" LINTING """
+Plug 'w0rp/ale'
+""" LINTING """
+
+""" FUZZY FIND """
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+""" FUZZY FIND """
+
+""" C# DEVELOPMENT """
+Plug 'omnisharp/omnisharp-vim'
+" Mappings, code-actions available flag and statusline integration
+Plug 'nickspoons/vim-sharpenup'
+""" C# DEVELOPMENT """
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'maximbaz/lightline-ale'
+
 " call PlugInstall to install new plugins
 call plug#end()
 
@@ -31,6 +58,9 @@ set expandtab
 set nobackup
 set noswapfile
 set nowrap
+
+" Update time for Git Gutter
+set updatetime=1000
 
 " Powerline Fonts
 let g:airline_powerline_fonts = 1
@@ -59,6 +89,13 @@ nmap <silent> <c-l> :wincmd l<CR>
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 " plugin settings
+
+"" Git Status in status line
+"function! GitStatus()
+"  let [a,m,r] = GitGutterGetHunkSummary()
+"  return printf('+%d ~%d -%d', a, m, r)
+"endfunction
+"set statusline+=%{GitStatus()}
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -92,6 +129,16 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 " jsx
 let g:jsx_ext_required = 0
+
+" ALE: {{{
+let g:ale_sign_error = '•'
+let g:ale_sign_warning = '•'
+let g:ale_sign_info = '·'
+let g:ale_sign_style_error = '·'
+let g:ale_sign_style_warning = '·'
+
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+" }}}
 
 " ale prettier-eslint
 "let g:ale_fixers = {
