@@ -1,23 +1,18 @@
-source /usr/share/cachyos-fish-config/cachyos-config.fish
 starship init fish | source
 
 if status is-interactive
-    keychain --quiet --eval ~/.ssh/id_ed25519 | source
+    # Commands to run in interactive sessions can go here
 end
 
-# Better ls command using exa
-alias ls='exa --icons --group-directories-first'
-alias ll='exa -l --icons --group-directories-first'
-alias la='exa -la --icons --group-directories-first'
+# Set Homebrew paths for Apple Silicon Mac
+if test -d /opt/homebrew/bin
+    fish_add_path /opt/homebrew/bin
+end
 
-# Better cat using bat
-alias cat='bat --style=auto'
+# Initialize Homebrew
+if test -d /opt/homebrew
+    eval (/opt/homebrew/bin/brew shellenv)
+else if test -d /usr/local/bin
+    eval (/usr/local/bin/brew shellenv)
+end
 
-# Initialize zoxide (better cd command)
-zoxide init fish | source
-
-# overwrite greeting
-# potentially disabling fastfetch
-#function fish_greeting
-#    # smth smth
-#end
