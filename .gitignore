@@ -1,0 +1,13 @@
+
+# Ignore MAC Configurations
+Unreal Engine/
+iterm2/
+zed/
+yarn/
+raycast/
+packer/
+neofetch/
+github-copilot/
+valet/
+autostart/
+xbuild/
